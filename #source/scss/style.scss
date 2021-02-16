@@ -1,0 +1,684 @@
+@import "nullstyle.scss";
+
+// Шрифты
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap');
+
+// Переменные
+$lightColor: white;
+$darkColor: black;
+$blueColor: #10c9c3;
+
+$Montserrat: Montserrat;
+$NunitoSans: Nunito Sans;
+
+// Миксины
+@mixin forText($color, $fs, $ff, $fw, $tt) {
+  color: $color;
+  font-size: $fs;
+  font-family: $ff;
+  font-weight: $fw;
+  text-transform: $tt;
+}
+
+// Шаблоны
+.theme{
+  @include forText($darkColor, 30px, $Montserrat, 600, none);
+  letter-spacing: 0.3px;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+.wrapper{
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.container{
+  width: 1650px;
+  margin: 0 auto;
+}
+
+.content{
+  flex: 1 1 auto;
+}
+
+header{
+  background: url(../img/home-page.jpg) 50% 25% no-repeat;
+  background-size: cover;
+  height: 800px;
+  .menu{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo{
+      width: 31px;
+      height: 25px;
+      img{
+        max-width: 100%;
+      }
+    }
+    ul{
+      display: flex;
+      li{
+        margin: 0 15px;
+        a{
+          @include forText($darkColor, 15px, $Montserrat, 600, uppercase);
+          letter-spacing: 1.2px;
+          &:hover{
+            color: $blueColor;
+          }
+        }
+      }
+    }
+  }
+
+  // Бургер меню
+  .burger-menu{
+    position: fixed;
+    width: 100%;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    transition: 0.5s;
+    &__logo{
+      width: 31px;
+      height: 25px;
+      img{
+        max-width: 100%;
+      }
+    }
+    .open{
+      width: 40px;
+      height: 37px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    &__open{
+      position: relative;
+      width: 40px;
+      height: 4px;
+      background: $darkColor;
+      &:before, &:after{
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $darkColor;
+      }
+      &:after{
+        top: 15px;
+      }
+    }
+  }
+  .burger-item{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: $blueColor;
+    transform: translateX(100%);
+    transition: 0.5s;
+    z-index: 100;
+    .close{
+      position: absolute;
+      top: 52px;
+      right: 53px;
+      width: 34px;
+      height: 33px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    &__close{
+      position: absolute;
+      top: -5.5px;
+      right: 13px;
+      width: 4px;
+      height: 40px;
+      background: $lightColor;
+      transform: rotate(45deg);
+      &:before{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: $lightColor;
+        transform: rotate(-90deg);
+      }
+    }
+    ul{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 150px 0;
+      li{
+        text-align: center;
+        a{
+          @include forText($lightColor, 25px, $Montserrat, 600, uppercase);
+          letter-spacing: 2px;
+          &:hover{
+            color: $darkColor;
+          }
+        }
+      }
+    }
+  }
+  .burger-scroll{
+    background: $blueColor;
+    z-index: 99;
+    &__logo{
+      img{
+        filter: invert(1);
+      }
+    }
+    &__open{
+      background: $lightColor;
+      &:before, &:after{
+        background: $lightColor;
+      }
+    }
+  }
+
+  .entry{
+    height: 720px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 100px;
+    &__row{
+      width: 40%;
+      padding: 0 30px;
+      h1{
+        @include forText($darkColor, 43px, $Montserrat, 500, none);
+        letter-spacing: 0.38px;
+        margin-bottom: 40px;
+      }
+      p{
+        @include forText($darkColor, 20px, $NunitoSans, 400, none);
+        letter-spacing: 0.09px;
+        line-height: 32px;
+        margin-bottom: 40px;
+      }
+      button{
+        width: 180px;
+        height: 54px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $blueColor;
+        border: none;
+        @include forText($lightColor, 15px, $Montserrat, 500, uppercase);
+        letter-spacing: 1.2px;
+      }
+    }
+  }
+}
+
+.about-us{
+  &__row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__body{
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 130px 10px;
+  }
+  &__title{
+    @extend .theme;
+    margin-bottom: 30px;
+  }
+  &__text{
+    text-align: center;
+    @include forText($darkColor, 20px, $NunitoSans, 400, none);
+    letter-spacing: 0.08px;
+    line-height: 32px;
+    margin-bottom: 30px;
+  }
+  &__image{
+    width: 223px;
+    height: 57px;
+    img{
+      max-width: 100%;
+    }
+  }
+}
+
+.info{
+  &__row{
+    display: flex;
+  }
+  &__title{
+    @extend .theme;
+    margin-bottom: 40px;
+  }
+  &__grafic1{
+    hr{
+      &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 75%;
+        height: 100%;
+        background: $blueColor;
+      }
+    }
+  }
+  &__grafic2{
+    hr{
+      &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: 100%;
+        background: $blueColor;
+      }
+    }
+  }
+  &__grafic3{
+    hr{
+      &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 65%;
+        height: 100%;
+        background: $blueColor;
+      }
+    }
+  }
+  .info1{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(245, 244, 241);
+    padding: 0 120px;
+    .graf{
+      pre{
+        @include forText($darkColor, 15px, $Montserrat, 600, uppercase);
+        letter-spacing: 1.2px;
+        margin-bottom: 20px;
+      }
+      hr{
+        position: relative;
+        background: rgb(208, 208, 211);
+        border: none;
+        height: 3px;
+        margin-bottom: 40px;
+      }
+    }
+    .graf:last-child{
+      margin-bottom: -30px;
+    }
+  }
+  .info2{
+    width: 50%;
+    height: 60vh;
+    background: url(../img/block-info.jpg) no-repeat center;
+    background-size: cover;
+    transform: rotateY(180deg);
+  }
+}
+
+.dignity{
+  background: $blueColor;
+  &__row{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 100px 0;
+  }
+  &__point-icon{
+    display: flex;
+    align-items: center;
+    i{
+      color: $lightColor;
+      font-size: 50px;
+    }
+  }
+  &__point-text{
+    padding: 0 80px 0 30px;
+    line-height: 28px;
+    h4{
+      @include forText($lightColor, 20px, $Montserrat, 500, none);
+    }
+    p{
+      @include forText($lightColor, 15px, $Montserrat, 500, uppercase);
+    }
+  }
+}
+
+.works{
+  &__row{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__block{
+    position: relative;
+    width: 25%;
+    height: 35vh;
+    background: url(../img/b1.jpg) center no-repeat;
+    background-size: cover;
+    &:nth-child(2){
+      background: url(../img/b2.jpg) center no-repeat;
+      background-size: cover;
+    }
+    &:nth-child(3){
+      background: url(../img/b3.jpg) center no-repeat;
+      background-size: cover;
+    }
+    &:nth-child(4){
+      background: url(../img/b4.jpg) center no-repeat;
+      background-size: cover;
+    }
+    &:nth-child(5){
+      background: url(../img/b4.jpg) center no-repeat;
+      background-size: cover;
+    }
+    &:nth-child(6){
+      background: url(../img/b3.jpg) center no-repeat;
+      background-size: cover;
+    }
+    &:nth-child(7){
+      background: url(../img/b2.jpg) center no-repeat;
+      background-size: cover;
+    }
+    &:nth-child(8){
+      background: url(../img/b1.jpg) center no-repeat;
+      background-size: cover;
+    }
+    &:before{
+      content: '\270D';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgb(68, 68, 68);
+      color: $lightColor;
+      font-size: 70px;
+      opacity: 0;
+      transition: 0.4s;
+    }
+    &:hover:before{
+      opacity: 0.7;
+    }
+  }
+  &__more{
+    background: rgb(236, 236, 236);
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    @include forText($darkColor, 15px, $Montserrat, 500, uppercase);
+    cursor: pointer;
+  }
+}
+
+.video{
+  &__row{
+    padding: 130px 0;
+    text-align: center;
+  }
+  &__title{
+    @extend .theme;
+    margin-bottom: 40px;
+  }
+  &__subtitle{
+    @include forText($darkColor, 19px, $NunitoSans, 400, none);
+    letter-spacing: 0.08px;
+    line-height: 28px;
+    padding: 0 30%;
+    margin-bottom: 70px;
+  }
+  &__player{
+    width: 100%;
+    height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../img/preview.jpg) center no-repeat;
+    background-size: cover;
+    a{
+      background: $blueColor;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      i{
+        color: $lightColor;
+        font-size: 23px;
+        padding-left: 4%;
+      }
+    }
+  }
+}
+
+.services{
+  background: rgb(236, 236, 236);
+  &__row{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 70px 0;
+  }
+  &__point{
+    width: 25%;
+    text-align: center;
+    padding: 50px;
+    .icon{
+      color: rgb(100, 100, 100);
+      font-size: 50px;
+      margin-bottom: 30px;
+    }
+    h4{
+      @include forText($darkColor, 15px, $Montserrat, 600, uppercase);
+      margin-bottom: 20px;
+    }
+    p{
+      @include forText($darkColor, 18px, $NunitoSans, 400, none);
+      letter-spacing: 0.08px;
+      line-height: 28px;
+    }
+  }
+}
+
+.slider{
+  background: $blueColor;
+  text-align: center;
+  padding: 80px 0;
+  &__item{
+    max-width: 50%;
+    padding: 150px 0 120px 0;
+    q{
+      @include forText($lightColor, 27px, $Montserrat, 500, none);
+      line-height: 40px;
+    }
+    p{
+      @include forText($lightColor, 15px, $Montserrat, 500, uppercase);
+      margin-top: 40px;
+    }
+  }
+  .slick-dots{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    li{
+      margin: 0 4px;
+    }
+    .slick-active{
+      button{
+        width: 13px;
+        height: 13px;
+        opacity: 1;
+      }
+    }
+    button{
+      width: 9px;
+      height: 9px;
+      background: $lightColor;
+      border: none;
+      border-radius: 50%;
+      font-size: 0;
+      opacity: 0.5;
+    }
+  }
+}
+.slick-list{
+  overflow: hidden;
+}
+.slick-track{
+  display: flex;
+}
+
+.pictures{
+  &__row{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 100px 0;
+  }
+}
+
+.form-block{
+  background: rgb(236, 236, 236);
+  &__row{
+    display: flex;
+    justify-content: center;
+    padding: 130px 0;
+  }
+  &__body{
+    max-width: 1000px;
+    text-align: center;
+  }
+  &__title{
+    @extend .theme;
+    margin-bottom: 40px;
+  }
+  &__subtitle{
+    @include forText($darkColor, 19px, $NunitoSans, 400, none);
+    letter-spacing: 0.08px;
+    line-height: 28px;
+    padding: 0 20%;
+    margin-bottom: 40px;
+  }
+  form{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  input{
+    width: 48%;
+    height: 55px;
+    &:nth-child(1){
+      margin-right: 4%;
+    }
+    &:nth-child(3){
+      width: 100%;
+    }
+  }
+  textarea{
+    width: 100%;
+    height: 250px;
+  }
+  .material{
+    @include forText($darkColor, 19px, consolas, 400, none);
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+  }
+  button{
+    width: 230px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $blueColor;
+    border: none;
+    @include forText($lightColor, 17px, $Montserrat, 600, uppercase);
+  }
+}
+
+
+footer{
+  background: #141414;
+  .footer-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 130px 0;
+    &__company{
+      width: 20%;
+      margin-right: 130px;
+      h3{
+        @include forText($lightColor, 21px, $Montserrat, 500, none);
+        letter-spacing: 0.18px;
+        margin-bottom: 30px;
+      }
+      p{
+        @include forText(#bcbcbc, 18px, $NunitoSans, 400, none);
+        letter-spacing: 0.07px;
+        line-height: 28px;
+      }
+    }
+    &__contact{
+      p{
+        @include forText(#bcbcbc, 18px, $NunitoSans, 400, none);
+        margin-bottom: 10px;
+      }
+    }
+    &__links{
+      padding-left: 100px;
+      a{
+        @include forText(#bcbcbc, 18px, $NunitoSans, 400, none);
+        letter-spacing: 0.07px;
+        line-height: 28px;
+        &:hover{
+          color: $blueColor;
+        }
+      }
+    }
+    &__mini-map{
+      display: flex;
+      ul{
+        padding-left: 70px;
+        a{
+          @include forText(#bcbcbc, 18px, $NunitoSans, 400, none);
+          letter-spacing: 0.07px;
+          line-height: 28px;
+          &:hover{
+            color: $lightColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+@import "mediastyle.scss";
